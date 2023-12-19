@@ -19,10 +19,11 @@ class ViaCEPService {
     } catch (e) {
       if (e is DioException) {
         if (e.response!.statusCode == 400) {
-          throw BadRequestException("Erro ao tentar buscar CEP: code 400");
+          throw BadRequestException(
+              "Erro ao tentar buscar CEP: 400 Baq Request");
         }
         throw HttpRequestException(
-            "Erro ao tentar buscar CEP: code ${e.response!.statusCode.toString()}");
+            "Erro ao tentar buscar CEP: status code ${e.response!.statusCode.toString()}");
       }
       rethrow;
     }

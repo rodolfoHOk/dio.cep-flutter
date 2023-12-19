@@ -1,6 +1,9 @@
 {
   "cSpell.words": [
+    "dotenv",
     "ibge",
-    "siafi"
+    "instanceof",
+    "siafi",
+    "viacep"
   ]
 }
