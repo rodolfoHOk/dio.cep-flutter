@@ -13,26 +13,28 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: ListView(
-          children: const [
-            Text("to do: cep list"),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (builder) {
-                return const AddCEPDialog();
-              });
-        },
-        child: const Icon(Icons.add_location),
+        body: Center(
+          child: ListView(
+            children: const [
+              Text("to do: cep list"),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (builder) {
+                  return const AddCEPDialog();
+                });
+          },
+          child: const Icon(Icons.add_location),
+        ),
       ),
     );
   }

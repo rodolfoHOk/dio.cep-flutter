@@ -2,6 +2,7 @@ import 'package:cep_flutter/exceptions/bad_request_exception.dart';
 import 'package:cep_flutter/exceptions/http_request_exception.dart';
 import 'package:cep_flutter/pages/edit_cep_page.dart';
 import 'package:cep_flutter/services/viacep/via_cep_service.dart';
+import 'package:cep_flutter/shared/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class AddCEPDialog extends StatefulWidget {
@@ -71,8 +72,8 @@ class _AddCEPDialogState extends State<AddCEPDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text("Digite o cep: (apenas números)"),
-          TextField(
+          CustomTextFormField(
+            title: "Cep: (apenas números)",
             keyboardType: TextInputType.number,
             controller: cepController,
           )
