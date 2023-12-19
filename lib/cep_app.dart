@@ -17,6 +17,8 @@ class CepApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         colorScheme: const ColorScheme.dark(
+          primary: Colors.green,
+          onPrimary: Colors.white,
           surface: Colors.green,
         ),
         useMaterial3: true,
