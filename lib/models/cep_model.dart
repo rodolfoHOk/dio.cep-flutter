@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_getters_setters
 
 class CEPModel {
+  String? _objectId;
   String _cep = "";
   String _logradouro = "";
   String _complemento = "";
@@ -11,6 +12,8 @@ class CEPModel {
   String _gia = "";
   String _ddd = "";
   String _siafi = "";
+  String? _createdAt;
+  String? _updatedAt;
 
   CEPModel(
       this._cep,
@@ -24,6 +27,8 @@ class CEPModel {
       this._ddd,
       this._siafi);
 
+  String? get objectId => _objectId;
+  set objectId(String? objectId) => _objectId = objectId;
   String get cep => _cep;
   set cep(String cep) => _cep = cep;
   String get logradouro => _logradouro;
@@ -44,8 +49,13 @@ class CEPModel {
   set ddd(String ddd) => _ddd = ddd;
   String get siafi => _siafi;
   set siafi(String siafi) => _siafi = siafi;
+  String? get createdAt => _createdAt;
+  set createdAt(String? createdAt) => _createdAt = createdAt;
+  String? get updatedAt => _updatedAt;
+  set updatedAt(String? updatedAt) => _updatedAt = updatedAt;
 
   CEPModel.fromJson(Map<String, dynamic> json) {
+    _objectId = json['objectId'];
     _cep = json['cep'];
     _logradouro = json['logradouro'];
     _complemento = json['complemento'];
@@ -56,10 +66,13 @@ class CEPModel {
     _gia = json['gia'];
     _ddd = json['ddd'];
     _siafi = json['siafi'];
+    _createdAt = json['createdAt'];
+    _updatedAt = json['updatedAt'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['objectId'] = _objectId;
     data['cep'] = _cep;
     data['logradouro'] = _logradouro;
     data['complemento'] = _complemento;
@@ -70,6 +83,8 @@ class CEPModel {
     data['gia'] = _gia;
     data['ddd'] = _ddd;
     data['siafi'] = _siafi;
+    data['createdAt'] = _createdAt;
+    data['updatedAt'] = _updatedAt;
     return data;
   }
 }

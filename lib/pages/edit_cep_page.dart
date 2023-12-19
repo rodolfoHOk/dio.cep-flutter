@@ -1,12 +1,16 @@
+import 'package:cep_flutter/exceptions/bad_request_exception.dart';
+import 'package:cep_flutter/exceptions/http_request_exception.dart';
 import 'package:cep_flutter/models/via_cep_model.dart';
+import 'package:cep_flutter/pages/main_page.dart';
 import 'package:cep_flutter/services/back4app/back4app_cep_service.dart';
 import 'package:cep_flutter/shared/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class EditCEPPage extends StatefulWidget {
   final ViaCEPModel viaCEPModel;
+  final String? objectId;
 
-  const EditCEPPage({super.key, required this.viaCEPModel});
+  const EditCEPPage({super.key, required this.viaCEPModel, this.objectId});
 
   @override
   State<EditCEPPage> createState() => _EditCEPPageState();
@@ -25,7 +29,7 @@ class _EditCEPPageState extends State<EditCEPPage> {
   Widget build(BuildContext context) {
     var viaCEP = widget.viaCEPModel;
     var cepController = TextEditingController(text: viaCEP.cep);
-    var logradouroController = TextEditingController(text: viaCEP.localidade);
+    var logradouroController = TextEditingController(text: viaCEP.logradouro);
     var complementoController = TextEditingController(text: viaCEP.complemento);
     var bairroController = TextEditingController(text: viaCEP.bairro);
     var localidadeController = TextEditingController(text: viaCEP.localidade);
@@ -34,6 +38,58 @@ class _EditCEPPageState extends State<EditCEPPage> {
     var giaController = TextEditingController(text: viaCEP.gia);
     var dddController = TextEditingController(text: viaCEP.ddd);
     var siafiController = TextEditingController(text: viaCEP.siafi);
+
+    void save() async {
+      ViaCEPModel model = ViaCEPModel(
+        cepController.text,
+        logradouroController.text,
+        complementoController.text,
+        bairroController.text,
+        localidadeController.text,
+        ufController.text,
+        ibgeController.text,
+        giaController.text,
+        dddController.text,
+        siafiController.text,
+      );
+      try {
+        if (widget.objectId != null && widget.objectId!.trim().isNotEmpty) {
+          await _back4appCEPService.update(widget.objectId!, model);
+        } else {
+          await _back4appCEPService.create(model);
+        }
+      } catch (e) {
+        if (e is BadRequestException) {
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: Text(
+                  e.message,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            );
+          }
+        } else if (e is HttpRequestException) {
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: Text(
+                  e.message,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            );
+          }
+        }
+      }
+      if (context.mounted) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (_) => const MainPage(title: "CEP App")));
+      }
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -97,22 +153,7 @@ class _EditCEPPageState extends State<EditCEPPage> {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () async {
-                    ViaCEPModel model = ViaCEPModel(
-                      cepController.text,
-                      logradouroController.text,
-                      complementoController.text,
-                      bairroController.text,
-                      localidadeController.text,
-                      ufController.text,
-                      ibgeController.text,
-                      giaController.text,
-                      dddController.text,
-                      siafiController.text,
-                    );
-                    await _back4appCEPService.create(model);
-                    if (context.mounted) Navigator.of(context).pop(context);
-                  },
+                  onPressed: () => save(),
                   child: const Text(
                     "Salvar",
                     style: TextStyle(fontSize: 18, color: Colors.white),

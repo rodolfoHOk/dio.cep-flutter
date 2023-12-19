@@ -23,7 +23,7 @@ class _AddCEPDialogState extends State<AddCEPDialog> {
     _viaCEPService = ViaCEPService();
   }
 
-  void save() async {
+  void confirm() async {
     try {
       var viaCepModel = await _viaCEPService.getByCEP(cepController.text);
 
@@ -87,7 +87,7 @@ class _AddCEPDialogState extends State<AddCEPDialog> {
           child: const Text("Cancelar"),
         ),
         FilledButton(
-          onPressed: () => save(),
+          onPressed: () => confirm(),
           child: const Text("Confirmar"),
         ),
       ],

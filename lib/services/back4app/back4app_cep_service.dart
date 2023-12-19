@@ -32,7 +32,7 @@ class Back4AppCEPService {
   Future<List<CEPModel>> list() async {
     try {
       var response = await _back4appDio.dio.get("/CEP");
-      return (response.data as List)
+      return (response.data['results'] as List)
           .map((cep) => CEPModel.fromJson(cep))
           .toList();
     } catch (e) {
@@ -64,6 +64,7 @@ class Back4AppCEPService {
   Future<void> update(String objectId, ViaCEPModel viaCEPModel) async {
     try {
       var cepModel = CEPModel.fromJson(viaCEPModel.toJson());
+      cepModel.objectId = objectId;
       await _back4appDio.dio.put("/CEP/$objectId", data: cepModel.toJson());
     } catch (e) {
       if (e is DioException) {
