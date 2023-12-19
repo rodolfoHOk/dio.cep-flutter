@@ -23,7 +23,7 @@ class CepApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MainPage(title: 'CEP App'),
+      home: const MainPage(title: 'Lista de CEPs'),
     );
   }
 }

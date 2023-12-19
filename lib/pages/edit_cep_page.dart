@@ -19,6 +19,8 @@ class EditCEPPage extends StatefulWidget {
 class _EditCEPPageState extends State<EditCEPPage> {
   late Back4AppCEPService _back4appCEPService;
 
+  var isLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +42,9 @@ class _EditCEPPageState extends State<EditCEPPage> {
     var siafiController = TextEditingController(text: viaCEP.siafi);
 
     void save() async {
+      setState(() {
+        isLoading = true;
+      });
       ViaCEPModel model = ViaCEPModel(
         cepController.text,
         logradouroController.text,
@@ -84,10 +89,12 @@ class _EditCEPPageState extends State<EditCEPPage> {
             );
           }
         }
+      } finally {
+        isLoading = false;
       }
       if (context.mounted) {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (_) => const MainPage(title: "CEP App")));
+            builder: (_) => const MainPage(title: 'Lista de CEPs')));
       }
     }
 
@@ -154,10 +161,20 @@ class _EditCEPPageState extends State<EditCEPPage> {
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () => save(),
-                  child: const Text(
-                    "Salvar",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
+                  child: isLoading
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      : const Text(
+                          "Salvar",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                 ),
               ],
             ),

@@ -14,8 +14,9 @@ class AddCEPDialog extends StatefulWidget {
 
 class _AddCEPDialogState extends State<AddCEPDialog> {
   var cepController = TextEditingController(text: "");
-
   late ViaCEPService _viaCEPService;
+
+  var isLoading = false;
 
   @override
   void initState() {
@@ -24,9 +25,11 @@ class _AddCEPDialogState extends State<AddCEPDialog> {
   }
 
   void confirm() async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       var viaCepModel = await _viaCEPService.getByCEP(cepController.text);
-
       if (context.mounted) {
         Navigator.of(context).pop(context);
         Navigator.push(
@@ -60,12 +63,17 @@ class _AddCEPDialogState extends State<AddCEPDialog> {
           );
         }
       }
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: const Color.fromRGBO(0, 32, 0, 1),
       title: const Center(
         child: Text("Adicionar CEP"),
       ),
@@ -88,7 +96,17 @@ class _AddCEPDialogState extends State<AddCEPDialog> {
         ),
         FilledButton(
           onPressed: () => confirm(),
-          child: const Text("Confirmar"),
+          child: isLoading
+              ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+              : const Text("Confirmar"),
         ),
       ],
     );

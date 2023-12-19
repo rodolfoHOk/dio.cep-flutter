@@ -106,6 +106,7 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: const Icon(Icons.mail),
           title: Text(widget.title),
         ),
         body: Container(
@@ -134,10 +135,15 @@ class _MainPageState extends State<MainPage> {
                           color: const Color.fromRGBO(48, 48, 48, 1),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 8),
+                                horizontal: 16, vertical: 8),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(model.cep),
+                                Text(
+                                  model.cep,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
                                 Text(model.logradouro),
                                 Text(
                                     "${model.bairro} - ${model.localidade} / ${model.uf}"),
