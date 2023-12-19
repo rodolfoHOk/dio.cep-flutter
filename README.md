@@ -1,16 +1,49 @@
-# cep_flutter
+# CEP Flutter App
 
-A new Flutter project.
+> Desafio Criando um App Flutter do Zero Para o Consumo da API do ViaCEP
 
-## Getting Started
+## Tecnologias
 
-This project is a starting point for a Flutter application.
+- Dart
+- Flutter
+- Rest API: ViaCEP
+- Backend as a Service: Back4App
 
-A few resources to get you started if this is your first Flutter project:
+### Bibliotecas adicionais
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- flutter_dotenv
+- dio
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Galeria de Imagens do projeto
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-01.png" alt="CEP Flutter Image 01" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-02.png" alt="CEP Flutter Image 02" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-03.png" alt="CEP Flutter Image 03" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-04.png" alt="CEP Flutter Image 04" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-05.png" alt="CEP Flutter Image 05" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-06.png" alt="CEP Flutter Image 06" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-07.png" alt="CEP Flutter Image 07" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-08.png" alt="CEP Flutter Image 08" width="225"/>
+
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/cep-flutter-09.png" alt="CEP Flutter Image 09" width="225"/>
+
+## Rodar
+
+### Requisitos
+
+- Flutter instalado
+- Android Studio
+- Android SDK command line tools
+- Clonar este repositório
+
+### Executar
+
+- Abrir um dispositivo emulado Android
+- Terminal na raiz do projeto: flutter run

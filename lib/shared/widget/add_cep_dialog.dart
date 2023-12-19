@@ -62,6 +62,8 @@ class _AddCEPDialogState extends State<AddCEPDialog> {
             ),
           );
         }
+      } else {
+        rethrow;
       }
     } finally {
       setState(() {

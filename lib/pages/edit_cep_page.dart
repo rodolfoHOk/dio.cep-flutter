@@ -88,6 +88,8 @@ class _EditCEPPageState extends State<EditCEPPage> {
               ),
             );
           }
+        } else {
+          rethrow;
         }
       } finally {
         isLoading = false;

@@ -42,6 +42,8 @@ class _MainPageState extends State<MainPage> {
             ),
           );
         }
+      } else {
+        rethrow;
       }
     } finally {
       setState(() {
@@ -58,6 +60,9 @@ class _MainPageState extends State<MainPage> {
   }
 
   void delete(String objectId) async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       await _back4appCEPService.delete(objectId);
     } catch (e) {
@@ -97,7 +102,13 @@ class _MainPageState extends State<MainPage> {
             ),
           );
         }
+      } else {
+        rethrow;
       }
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
