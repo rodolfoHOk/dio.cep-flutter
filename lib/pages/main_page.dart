@@ -1,4 +1,4 @@
-import 'package:cep_flutter/services/viacep/via_cep_service.dart';
+import 'package:cep_flutter/shared/widget/add_cep_dialog.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -19,17 +19,20 @@ class _MainPageState extends State<MainPage> {
       ),
       body: Center(
         child: ListView(
-          children: [
-            FilledButton(
-              onPressed: () async {
-                ViaCEPService service = ViaCEPService();
-                var response = await service.getByCEP("01001000");
-                debugPrint(response.toString());
-              },
-              child: const Text("Teste Via CEP"),
-            ),
+          children: const [
+            Text("to do: cep list"),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (builder) {
+                return const AddCEPDialog();
+              });
+        },
+        child: const Icon(Icons.add_location),
       ),
     );
   }
